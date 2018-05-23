@@ -1,0 +1,113 @@
+server:
+  port: 5000
+
+spring:
+  application:
+    name: cheque-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/cheque-system
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    testOnBorrow: true
+    validationQuery: SELECT 1
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      naming-strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
+      ddl-auto: create-drop
+
+  jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+  mail:
+      host: localhost
+  cloud:
+    discovery:
+      enabled: false
+  http:
+    multipart:
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+      file-size-threshold: 100mb
+
+logging:
+  file: /tmp/cheque-lapid.log
+  level:
+    root: INFO
+    feign: DEBUG
+    org.hibernate.SQL: debug
+
+#server:
+#  port: 5000
+#
+#spring:
+#  profile: local
+#  application:
+#    name: chequelapid
+#  datasource:
+#    testOnBorrow: true
+#    validationQuery: SELECT 1
+#  jpa:
+#    database-platform: org.hibernate.dialect.MySQL5Dialect
+#    hibernate:
+#      naming-strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
+#      hbm2ddl: none
+#  jackson:
+#      date-format: yyyy-MM-dd HH:mm:ss
+#  mail:
+#      host: localhost
+#  cloud:
+#    discovery:
+#      enabled: false
+#  http:
+#    multipart:
+#      max-file-size: 100Mb
+#      max-request-size: 100Mb
+#      file-size-threshold: 100mb
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#        defaultZone: http://eureka-test-service.ap-southeast-1.elasticbeanstalk.com/eureka/
+#
+#hystrix:
+#  shareSecurityContext: true
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: false
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 6000
+#
+#feign:
+#  hystrix:
+#    enabled: false
+#
+#unit:
+#  type: provider
+#
+#zuul:
+#  routes:
+#    CP-NOTIFICATION-SERVICE: "sms/**"
+#
+#logging:
+#  file: /tmp/provider-service.log
+#  level:
+#    root: INFO
+#    feign: DEBUG
+#    org.hibernate.SQL: debug
+#
+#security:
+#  jwt:
+#    publicKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDvqvuBbCQDwkMvVdb3Me6AxgXbp24jZM3Ob2ioPykiqksJ8ta9MCE++rbaL1S8ujT/ZE3S+6wQNFZiYgd43KuOevgtoD+N64+5XX2VYXsr4iXJzZuSkzpGj0L75/5p666g3clpfHtM6ANN9ZTrIfh3M4GxmnHrpKTRV8GgkJJxQwIDAQAB
+#
+#default:
+#  parent:
+#    ke:
+#      orgunit: 112
+#    tz:
+#      orgunit: 130
+#  employee:
+#    permission: provider

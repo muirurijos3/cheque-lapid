@@ -1,0 +1,72 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.ke.chequelapid'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile 'io.github.openfeign:feign-jackson:9.5.0'
+    compile 'io.github.openfeign:feign-slf4j:9.5.0'
+    compile "io.springfox:springfox-swagger-ui:2.5.0"
+    compile "io.springfox:springfox-swagger2:2.5.0"
+    compile "org.springframework.boot:spring-boot-starter-security"
+    compile 'com.amazonaws:amazon-sqs-java-messaging-lib:1.0.1'
+    compile 'com.amazonaws:aws-java-sdk-core:1.11.272'
+    compile 'com.amazonaws:aws-java-sdk-s3:1.11.272'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    compile 'com.googlecode.libphonenumber:libphonenumber:7.7.2'
+    compile 'com.internetitem:logback-elasticsearch-appender:1.2'
+    compile 'mysql:mysql-connector-java:5.1.38'
+    compile 'org.apache.commons:commons-collections4:4.1'
+    compile 'org.apache.commons:commons-lang3:3.1'
+    compile 'org.apache.poi:poi-ooxml:3.14'
+    compile 'org.apache.poi:poi:3.14'
+    compile 'org.codehaus.groovy:groovy:2.4.7'
+//    compile 'org.liquibase:liquibase-core'
+    compile 'org.slf4j:jul-to-slf4j:1.7.21'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-data-rest'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.cloud:spring-cloud-starter-feign'
+    compile 'org.springframework:spring-jms'
+
+    testCompile 'com.h2database:h2'
+    testCompile 'com.jayway.restassured:rest-assured:2.9.0'
+    testCompile('com.jayway.restassured:json-path:2.9.0')
+    testCompile('com.jayway.restassured:spring-mock-mvc:2.2.0')
+    testCompile('org.assertj:assertj-core:3.4.1')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+build.dependsOn('copyRuntimeLibs')
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.13'
+}
